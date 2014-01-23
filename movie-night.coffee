@@ -63,18 +63,22 @@ class DrawHelper
   @drawText: (canvas, title) ->
     ctx = canvas.getContext('2d')
     #console.log DrawHelper.getAverageRGB(canvas)
-    console.log canvas.toDataURL()
-    ctx.fillStyle = "rgba(0, 0, 0, 0.8)"
+    text_color = "rgba(255, 255, 255, 0.8)"
+    shadow_color = "rgba(0, 0, 0, 1.0)"
+    top_font = "54pt Tangerine"
+    bottom_font = "54pt Tangerine"
+    ctx.fillStyle = text_color
     ctx.shadowOffsetX = 2
     ctx.shadowOffsetY = 2
     ctx.shadowBlur = 3
-    ctx.shadowColor = "rgba(0,0,0,0.8)"
-    ctx.font = "48pt Tangerine"
+    ctx.shadowColor = shadow_color
+    ctx.font = top_font
     ctx.textAlign = "left"
     ctx.textBaseline = "top"
     text = "Cuesta Theater Presents"
     width = ctx.measureText(text).width
     ctx.fillText(text, (canvas.width-width)/2, 30)
+    ctx.font = bottom_font
     width = ctx.measureText(title).width
     ctx.fillText(title, (canvas.width-width)/2, 200)
 
@@ -95,5 +99,4 @@ class MoviePoster
       DrawHelper.drawText canvas[0], "Flashdance"
 
     # Specify the src to load the image
-    img.crossorigin="anonymous"
     img.src = "http://image.tmdb.org/t/p/w500".concat(path)
