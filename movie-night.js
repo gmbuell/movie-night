@@ -122,7 +122,12 @@
     function MyFacebookApp() {}
 
     MyFacebookApp.prototype.doSomething = function() {
-      return console.log("I'm doing something over here.");
+      console.log("I'm doing something over here.");
+      return FB.login(function() {
+        return FB.api('/me/friends', function(response) {
+          return console.log(response);
+        });
+      });
     };
 
     return MyFacebookApp;

@@ -94,5 +94,8 @@ class MyFacebookApp
   constructor: ->
   doSomething: () ->
     console.log "I'm doing something over here."
+    FB.login ->
+      FB.api '/me/friends', (response) ->
+        console.log response
 
 window.myFacebookApp = new MyFacebookApp()
