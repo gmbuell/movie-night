@@ -1,23 +1,3 @@
-#Load the FB api asynchronously
-# $(document).ready ->
-#   $.ajaxSetup
-#     cache: true
-#   $.getScript 'http://connect.facebook.net/en_US/all.js', () ->
-#     FB.init
-#       appId: 532820393483542
-#       status: true
-#       cookie: true
-#       xfbml: false
-#       oauth: true
-#     FB.getLoginStatus myFacebookApp.doSomething
-
-# class MyFacebookApp 
-#   constructor: ->
-#   doSomething: () ->
-#     console.log "I'm doing something over here."
-
-# window.myFacebookApp = new MyFacebookApp()
-
 $(document).ready ->
   WebFont.load
     google:
@@ -34,6 +14,14 @@ $(document).ready ->
         "Successful AJAX call:"
       new MoviePoster(back.file_path) for back in data.backdrops
       console.log data
+  $.getScript 'http://connect.facebook.net/en_US/all.js', () ->
+    FB.init
+      appId: 532820393483542
+      status: true
+      cookie: true
+      xfbml: false
+      oauth: true
+    FB.getLoginStatus myFacebookApp.doSomething
 
 class DrawHelper
   @drawImage: (canvas, img) ->
@@ -100,3 +88,11 @@ class MoviePoster
 
     # Specify the src to load the image
     img.src = "http://image.tmdb.org/t/p/w500".concat(path)
+
+
+class MyFacebookApp 
+  constructor: ->
+  doSomething: () ->
+    console.log "I'm doing something over here."
+
+window.myFacebookApp = new MyFacebookApp()
